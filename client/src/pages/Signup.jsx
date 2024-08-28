@@ -1,8 +1,8 @@
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import GenderCheckbox from "../components/GenderCheckbox";
-import { useState } from "react";
-import useSignup from "../hooks/useSignup";
 import Loader from "../components/Loader";
+import useSignup from "../hooks/useSignup";
 import toast from "react-hot-toast";
 
 const Signup = () => {
@@ -13,7 +13,7 @@ const Signup = () => {
     confirmPassword: "",
     gender: "",
   });
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleCheckboxChange = (gender) => {
     setInputs({ ...inputs, gender });
@@ -26,7 +26,8 @@ const Signup = () => {
     try {
       const data = await signUp(inputs);
       console.log(data);
-      // navigate("/");
+      navigate("/");
+      toast.success("Account created successfully");
     } catch (error) {
       console.log(error);
       // toast.error(error.message);

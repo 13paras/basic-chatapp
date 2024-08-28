@@ -6,8 +6,10 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Home from "./pages/home/Home";
 import { Toaster } from "react-hot-toast";
+import { useAuthcontext } from "./context/AuthContext";
 
 const App = () => {
+  const { authUser } = useAuthcontext();
   /*   const location = useLocation();
 
   useEffect(() => {
@@ -18,7 +20,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
-        <Route path="/signup" element={<Signup />} />
+        <Route path="/signup" element={authUser ? <Home /> : <Signup />} />
       </Routes>
       <Toaster />
     </div>
