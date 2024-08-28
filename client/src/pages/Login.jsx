@@ -1,4 +1,11 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
+
 const Login = () => {
+  const [inputs, setInputs] = useState({
+    username: "",
+    password: "",
+  });
   return (
     <div className="flex flex-col items-center justify-center min-w-96 mx-auto">
       <div className="w-full p-6 rounded-lg shadow-md bg-clip-padding backdrop-filter backdrop-blur-lg bg-gray-800">
@@ -12,18 +19,17 @@ const Login = () => {
           <form action="#" method="POST" className="space-y-6">
             <div>
               <label
-                htmlFor="email"
+                htmlFor="username"
                 className="block text-sm font-medium leading-6 text-gray-300"
               >
-                Email address
+                Username
               </label>
               <div className="mt-2">
                 <input
-                  id="email"
-                  name="email"
-                  type="email"
+                  id="username"
+                  name="username"
+                  type="text"
                   required
-                  autoComplete="email"
                   className="block w-full bg-[#1d2432] rounded-md border-0 py-1.5 text-gray-300 shadow-sm ring-1 ring-inset ring-gray-700 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-500 sm:text-sm sm:leading-6"
                 />
               </div>
@@ -67,13 +73,13 @@ const Login = () => {
 
           <p className="mt-10 text-center text-sm text-gray-500">
             Don&apos; have an account?
-            <a
-              href="#"
+            <Link
+              to={"/signup"}
               className="font-semibold leading-6 text-indigo-400 hover:text-indigo-500"
             >
               {" "}
               Sign up
-            </a>
+            </Link>
           </p>
         </div>
       </div>
