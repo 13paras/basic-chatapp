@@ -1,11 +1,22 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import useLogin from "../hooks/useLogin";
+import Loader from "../components/Loader";
 
 const Login = () => {
   const [inputs, setInputs] = useState({
     username: "",
     password: "",
   });
+  const { login, loading } = useLogin();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    login(inputs);
+  };
+
+  if (loading) return <Loader />;
   return (
     <div className="flex flex-col items-center justify-center min-w-96 mx-auto">
       <div className="w-full p-6 rounded-lg shadow-md bg-clip-padding backdrop-filter backdrop-blur-lg bg-gray-800">
@@ -16,7 +27,7 @@ const Login = () => {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form action="#" method="POST" className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-6">
             <div>
               <label
                 htmlFor="username"
@@ -26,6 +37,10 @@ const Login = () => {
               </label>
               <div className="mt-2">
                 <input
+                  value={inputs.username}
+                  onChange={(e) =>
+                    setInputs({ ...inputs, username: e.target.value })
+                  }
                   id="username"
                   name="username"
                   type="text"
@@ -54,6 +69,10 @@ const Login = () => {
               </div>
               <div className="mt-2">
                 <input
+                  value={inputs.password}
+                  onChange={(e) =>
+                    setInputs({ ...inputs, password: e.target.value })
+                  }
                   id="password"
                   name="password"
                   type="password"

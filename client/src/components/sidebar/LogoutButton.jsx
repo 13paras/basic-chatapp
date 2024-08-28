@@ -1,11 +1,9 @@
 import { LogOutIcon } from "lucide-react";
+import useLogout from "../../hooks/useLogout";
 
 const LogoutButton = () => {
-  const loading = false;
+  const { logout, loading } = useLogout();
 
-  const logout = () => {
-    console.log("logout");
-  };
   return (
     <div className="mt-auto">
       {!loading ? (
