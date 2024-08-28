@@ -7,4 +7,5 @@ const router = Router();
 router.get("/:id", protectedRoute, getMessages);
 router.post("/send/:id", protectedRoute, sendMessage);
 
+
 export { router };
