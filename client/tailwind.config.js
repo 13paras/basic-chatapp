@@ -4,15 +4,15 @@ export default {
   content: [
     "./index.html",
     "./src/**/*.{js,ts,jsx,tsx}",
-    'node_modules/preline/dist/*.js',
+    "node_modules/preline/dist/*.js",
   ],
   theme: {
     extend: {},
   },
   darkMode: "class",
   plugins: [
-    require('daisyui'),
-    require('preline/plugin'),
-    require('@tailwindcss/forms'),
+    require("daisyui"),
+    require("preline/plugin"),
+    require("@tailwindcss/forms"),
   ],
-}
+};

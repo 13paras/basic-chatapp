@@ -2,17 +2,21 @@ import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
 
 import "preline/preline";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import Home from "./pages/home/Home";
 
 const App = () => {
-  const location = useLocation();
+  /*   const location = useLocation();
 
   useEffect(() => {
     window.HSStaticMethods.autoInit();
-  }, [location.pathname]);
+  }, [location.pathname]); */
   return (
-    <div>
-      {" "}
-      <h1 className="text-3xl font-bold underline">Hello world!</h1>
+    <div className="p-4 h-screen flex items-center justify-center">
+      {/* <Login /> */}
+      {/* <Signup /> */}
+      <Home />
     </div>
   );
 };
