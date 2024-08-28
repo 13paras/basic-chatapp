@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useState } from "react";
 import toast from "react-hot-toast";
 
@@ -19,26 +20,31 @@ const useSignup = () => {
       gender,
     });
 
+    console.log({
+      fullName,
+      username,
+      password,
+      confirmPassword,
+      gender,
+    });
+
+    console.log({ success });
+
     if (!success) return;
     setLoading(true);
     try {
-      const res = await fetch("/api/v1/auth/signup", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          fullName,
-          username,
-          password,
-          confirmPassword,
-          gender,
-        }),
+      const response = await axios.post("/api/v1/auth/signup", {
+        fullName,
+        username,
+        password,
+        confirmPassword,
+        gender,
       });
 
-      const data = await res.json();
-      console.log(data);
+      console.log("Signup response: ", response);
+      toast.success("Account created successfully");
     } catch (error) {
+      console.log("Error signing up: ", error);
       toast.error(error.message);
     } finally {
       setLoading(false);
@@ -60,4 +66,6 @@ function handleInputErrors({
     toast.error("Please fill all the fields");
     return false;
   }
+
+  return true;
 }

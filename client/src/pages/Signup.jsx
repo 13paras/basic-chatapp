@@ -13,7 +13,7 @@ const Signup = () => {
     confirmPassword: "",
     gender: "",
   });
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const handleCheckboxChange = (gender) => {
     setInputs({ ...inputs, gender });
@@ -23,9 +23,14 @@ const Signup = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    await signUp(inputs);
-    navigate("/");
-    toast.success("Account created successfully");
+    try {
+      const data = await signUp(inputs);
+      console.log(data);
+      // navigate("/");
+    } catch (error) {
+      console.log(error);
+      // toast.error(error.message);
+    }
   };
 
   if (loading) return <Loader />;
@@ -142,10 +147,10 @@ const Signup = () => {
               />
             </div>
           </div>
-        <GenderCheckbox
-          onCheckboxChange={handleCheckboxChange}
-          selectedGender={inputs.gender}
-        />
+          <GenderCheckbox
+            onCheckboxChange={handleCheckboxChange}
+            selectedGender={inputs.gender}
+          />
 
           <div>
             <button type="submit" className="btn btn-primary w-full">
@@ -153,7 +158,6 @@ const Signup = () => {
             </button>
           </div>
         </form>
-
 
         <p className="mt-10 text-center text-sm text-gray-500">
           Already have an account?
