@@ -3,7 +3,6 @@ import cors from "cors";
 import express from "express";
 import morgan from "morgan";
 
-const app = express();
 
 app.use(
   cors({
@@ -20,6 +19,7 @@ app.use(morgan("dev"));
 import { router as authRouter } from "./routes/auth.routes.js";
 import { router as messageRouter } from "./routes/message.routes.js";
 import { router as userRouter } from "./routes/user.routes.js";
+import { app } from "./socket/socket.js";
 
 app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/messages", messageRouter);

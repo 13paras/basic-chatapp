@@ -1,7 +1,6 @@
+import dayjs from "dayjs";
 import { useAuthcontext } from "../../context/AuthContext";
 import { useConversation } from "../../zustand/useConversation";
-import dayjs from "dayjs";
-import utc from "dayjs/plugin/utc";
 
 const Message = ({ message }) => {
   // console.log(message)
@@ -13,6 +12,7 @@ const Message = ({ message }) => {
     ? authUser?.profilePic
     : selectedConversation?.profilePic;
   const bubbleBgColor = fromMe ? "bg-blue-500" : "bg-zinc-600 text-white";
+  const shakeClass = message?.shouldShake ? "shake" : "";
 
   return (
     <div className={`chat ${chatClassMe}`}>
@@ -21,7 +21,7 @@ const Message = ({ message }) => {
           <img src={profilePic} alt="Tailwind CSS chat bubble component" />
         </div>
       </div>
-      <div className={`chat-bubble text-white ${bubbleBgColor} `}>
+      <div className={`chat-bubble text-white ${bubbleBgColor} ${shakeClass} `}>
         {message.message}
       </div>
       <div

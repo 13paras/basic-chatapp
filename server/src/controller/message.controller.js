@@ -1,5 +1,6 @@
 import { Conversation } from "../models/conversation.model.js";
 import { Message } from "../models/message.model.js";
+import { getReceiverSocketId, io } from "../socket/socket.js";
 
 const sendMessage = async (req, res) => {
   try {
@@ -29,6 +30,15 @@ const sendMessage = async (req, res) => {
 
     // to run concurrent promises we use Promise.all() method
     await Promise.all([conversation.save(), newMessage.save()]);
+
+    // SOCKET IO FUNCTIONALITY
+    const receiverSocketId = getReceiverSocketId(receiverId);
+    console.log("receiverSocketId: ", receiverSocketId);
+    if (receiverSocketId) {
+      // io.to.emit() is used to send events to a specific client
+      // io.emit() is used to send events to all the connected clients.
+      io.to(receiverSocketId).emit("newMessage", newMessage);
+    }
 
     res.status(200).json({
       success: true,
