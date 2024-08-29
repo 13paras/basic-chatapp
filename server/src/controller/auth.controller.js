@@ -1,6 +1,7 @@
 import { User } from "../models/user.model.js";
 import bcrypt from "bcryptjs";
 import generateTokenAndSetCookie from "../utils/generateToken.js";
+import { myCache } from "../app.js";
 
 const signupUser = async (req, res) => {
   const { fullName, username, password, gender, confirmPassword } = req.body;
@@ -38,6 +39,8 @@ const signupUser = async (req, res) => {
     });
 
     await newUser.save();
+
+    myCache.del("users");
 
     res.status(201).json({
       success: true,

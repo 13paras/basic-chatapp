@@ -2,7 +2,9 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import express from "express";
 import morgan from "morgan";
+import NodeCache from "node-cache";
 
+const myCache = new NodeCache({ stdTTL: 400, checkperiod: 220 });
 
 app.use(
   cors({
@@ -25,4 +27,4 @@ app.use("/api/v1/auth", authRouter);
 app.use("/api/v1/messages", messageRouter);
 app.use("/api/v1/users", userRouter);
 
-export { app };
+export { app, myCache };
