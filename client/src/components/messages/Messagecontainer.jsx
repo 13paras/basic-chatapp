@@ -16,7 +16,7 @@ const Messagecontainer = () => {
     }
   }, [])
 
-  // console.log(selectedConversation)
+
   return (
     <div className="md:min-w-[450px] bg-zinc-800/60 flex flex-col">
       {!selectedConversation ? (

@@ -22,16 +22,6 @@ const useSignup = () => {
       gender,
     });
 
-    console.log({
-      fullName,
-      username,
-      password,
-      confirmPassword,
-      gender,
-    });
-
-    console.log({ success });
-
     if (!success) return;
     setLoading(true);
     try {

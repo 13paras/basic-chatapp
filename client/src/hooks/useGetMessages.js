@@ -17,8 +17,6 @@ const useGetMessages = () => {
           throw new Error(data.error);
         }
 
-        console.log("Messages from zustand: ", messages);
-
         setMessages(data?.data);
       } catch (error) {
         console.log(error);

@@ -3,7 +3,7 @@ import { useAuthcontext } from "../../context/AuthContext";
 import { useConversation } from "../../zustand/useConversation";
 
 const Message = ({ message }) => {
-  // console.log(message)
+
   const { authUser } = useAuthcontext();
   const { selectedConversation } = useConversation();
   const fromMe = message?.senderId === authUser?._id;

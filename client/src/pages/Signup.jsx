@@ -24,8 +24,8 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const data = await signUp(inputs);
-      console.log(data);
+      await signUp(inputs);
+
       navigate("/");
       toast.success("Account created successfully");
     } catch (error) {
@@ -99,7 +99,6 @@ const Signup = () => {
               >
                 Password
               </label>
-              
             </div>
             <div className="mt-2">
               <input
