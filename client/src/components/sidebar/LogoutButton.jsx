@@ -5,10 +5,10 @@ const LogoutButton = () => {
   const { logout, loading } = useLogout();
 
   return (
-    <div className="mt-auto">
+    <div className="mt-3">
       {!loading ? (
         <LogOutIcon
-          className="w-6 h-6 text-white cursor-pointer"
+          className="w-6 h-6 active:scale-100 transition-all ease-in-out text-red-500 cursor-pointer"
           onClick={logout}
         />
       ) : (

@@ -5,7 +5,6 @@ const Conversation = ({ user, emoji, lastIndex }) => {
 
   const isSelected = selectedConversation?._id === user._id;
 
-  console.log(user);
   return (
     <>
       <div

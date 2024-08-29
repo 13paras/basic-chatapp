@@ -1,19 +1,32 @@
 import { MessageCircleCode } from "lucide-react";
 import MessageInput from "./MessageInput";
 import Messages from "./Messages";
+import { useConversation } from "../../zustand/useConversation";
+import { useEffect } from "react";
 
 const Messagecontainer = () => {
-  const noChatSelected = true;
+  const { selectedConversation, setSelectedConversation } = useConversation();
+
+  useEffect(() => {
+    
+
+    // clear selected conversation when user navigates to another page
+    return () => {
+      setSelectedConversation(null)
+    }
+  }, [])
+
+  // console.log(selectedConversation)
   return (
     <div className="md:min-w-[450px] bg-zinc-800/60 flex flex-col">
-      {noChatSelected ? (
+      {!selectedConversation ? (
         <NoChatSelected />
       ) : (
         <>
           {/* Header */}
           <div className="bg-slate-500 px-4 py-2 mb-2">
             <span className="label-text">To:</span>{" "}
-            <span className="text-gray-900 font-bold">John doe</span>
+            <span className="text-gray-900 font-bold">{selectedConversation.fullName}</span>
           </div>
 
           <Messages />
